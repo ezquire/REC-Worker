@@ -17,7 +17,7 @@ const runCode = async (apiBody, ch, msg) => {
         await fs.promises.writeFile(`/temp/${apiBody.folder}/output.txt`, "");
         console.log("Output.txt created !")
 
-        const output = await execute(command);
+        const output = await execute(command,{maxBuffer: 1024 * 500});
         const data = await fs.promises.readFile(`/temp/${apiBody.folder}/output.txt`, "utf-8");
         let result = {
             output: data,
@@ -31,7 +31,8 @@ const runCode = async (apiBody, ch, msg) => {
         client.setex(apiBody.folder.toString(), 3600, JSON.stringify(result));
         ch.ack(msg);
     } catch (error) {
-        console.log("Error")
+        console.log(error)
+        ch.ack(msg);
     }
 
 }
@@ -44,5 +45,6 @@ export const createFiles = async (apiBody, ch, msg) => {
         runCode(apiBody, ch, msg);
     } catch (error) {
         console.log(error)
+        ch.ack(msg);
     }
 };

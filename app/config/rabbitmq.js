@@ -1,6 +1,9 @@
 import * as amqp from 'amqp-connection-manager';
+import dotenv from "dotenv";
 import { createFiles } from '../app.js'
 
+dotenv.config()
+console.log(process.env.RABBITMQ_URI)
 const QUEUE_NAME = 'judge'
 const connection = amqp.connect([process.env.RABBITMQ_URI]);
 

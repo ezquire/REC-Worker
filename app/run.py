@@ -22,8 +22,8 @@ def compile(file,lang):
         return 404
 
 def run(file,input,timeout,lang):
-    #cmd='sudo -u judge '
-    cmd =''
+    # cmd='sudo -u judge '
+    cmd = ''
     if lang == 'java':
         cmd += 'java main'
     elif lang=='c' or lang=='cpp':
