@@ -12,4 +12,5 @@ RUN chmod 700  /
 RUN chmod 755 -R temp/
 RUN adduser --disabled-password --gecos "" judge
 RUN cd app && npm install
+USER judge
 CMD cd app &&  npm start 
