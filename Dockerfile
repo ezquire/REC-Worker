@@ -11,5 +11,6 @@ RUN mkdir temp
 RUN chmod 700  /
 RUN chmod 755 -R temp/
 RUN adduser --disabled-password --gecos "" judge
+RUN adduser judge sudo
 RUN cd app && npm install
 CMD cd app &&  npm start 
